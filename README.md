@@ -9,7 +9,7 @@
 
 ### Project Description
 - Create server on DigitalOcean
-- Write Ansible playbook that installs necessary technologies, creates linux user for an application and deploys a NodeJs application with that user
+- Write Ansible playbook that installs node and npm on the server, copy Node artifact and unpack and start application
   
 ### 1. Create a DigitalOcean Droplet
 
@@ -28,5 +28,3 @@ Make sure your local machine is set up with:
 ### 3. Create a hosts file in the root directory for Ansible to define your server.
 
 
-Run the Ansible Playbook
-ansible-playbook -i hosts playbook.yml
