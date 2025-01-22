@@ -28,7 +28,7 @@
     - name: Ensure application is running
       shell: ps aux | grep node
       register: app_status
-    - debug: mgs={{app_status}}
+    - debug: mgs={{app_status.stdout_lines}}
 
         
 
