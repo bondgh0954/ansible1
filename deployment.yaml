@@ -1,0 +1,35 @@
+---
+- name: Install node and npm
+  hosts: 157.230.108.117
+  tasks:
+    - name: Update apt repo and cache
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    - name: Install nodejs and npm
+      apt:
+        pkg:
+          - nodejs
+          - npm
+- name: Deploy nodejs app
+  hosts: 157.230.108.117
+  tasks:
+    - name: Unpack the nodejs file
+      unarchive: 
+        src: /home/bondgh/Documents/Nanateam/nana-teamApp-0.1.0.tgz
+        dest: /root/
+    - name: Install dependencies
+      npm:
+        path: /root/package
+    - name: Start the application
+      command:
+        chdir: /root/package/app
+        cmd: node server
+      async: 1000
+      poll: 0
+    - name: Ensure application is running
+      shell: ps aux | grep node
+      register: app_status
+    - debug: mgs={{app_status}}
+
+        
+
+      
